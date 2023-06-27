@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="spslogo.png" type="image/x-icon">
+    <title>SPS</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+
+    .l1,
+    .l2 {
+        font-family: 'Merriweather', serif;
+        font-style: italic;
+    }
+
+    table.tb {
+        border-collapse: separate;
+    }
+
+    .tb th,
+    .tb td {
+        align-content: center;
+        padding: 25px;
+        border: solid 1px #777;
+    }
+
+    .tb td {
+        text-align: center;
+    }
+
+    table {
+        z-index: 2;
+        border-collapse: collapse;
+        border-spacing: 0;
+        box-shadow: 0 2px 15px rgba(64, 64, 64, .7);
+        border-radius: 12px 12px 0 0;
+        overflow: hidden;
+    }
+
+    td,
+    th {
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #6b2804;
+        color: #fafafa;
+        font-family: 'Open Sans', Sans-serif;
+        font-weight: 150;
+        text-transform: uppercase;
+    }
+
+    tr {
+        width: 100%;
+        background-color: #fafafa;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    tr:nth-child(even) {
+        background-color: #eeeeee;
+    }
+
+    input[type=text] {
+        width: 30%;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        padding: 8px;
+        box-sizing: border-box;
+        transition: .3s;
+    }
+
+    input[type=text]:focus {
+        border-color: dodgerBlue;
+        box-shadow: 0 0 8px 0 dodgerBlue;
+    }
+
+    input[type=number] {
+        width: 20%;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        padding: 8px;
+        box-sizing: border-box;
+        transition: .3s;
+    }
+
+    input[type=number]:focus {
+        border-color: dodgerBlue;
+        box-shadow: 0 0 8px 0 dodgerBlue;
+    }
+
+    .qwer {
+        align-items: center;
+        background-color: #0A66C2;
+        border: 0;
+        border-radius: 100px;
+        box-sizing: border-box;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        line-height: 20px;
+        max-width: 480px;
+        min-height: 40px;
+        min-width: 0px;
+        overflow: hidden;
+        padding: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        touch-action: manipulation;
+        transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: middle;
+    }
+
+    .qwer:hover,
+    .qwer:focus {
+        background-color: #c31d11;
+        color: #ffffff;
+    }
+
+    .qwer:active {
+        background: #09e11b;
+        color: rgb(255, 255, 255, .7);
+    }
+
+    div button {
+        display: inline-block;
+    }
+
+    #f1,
+    #f2,
+    #f3,
+    #f4,
+    #f5,
+    #f6,
+    #f7,
+    #f8,
+    #f9,
+    #f10 {
+        align-items: center;
+        background-image: linear-gradient(135deg, #f34079 40%, #fc894d);
+        border: 0;
+        border-radius: 10px;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Codec cold", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        height: 54px;
+        letter-spacing: .4px;
+        line-height: 1;
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 3px;
+        text-decoration: none;
+        text-transform: uppercase;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        margin: 5px;
+        will-change: transform;
+    }
+
+
+    .food:hover {
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+        transform: translateY(3px);
+    }
+
+    .food:active {
+        box-shadow: none;
+        transform: translateY(0);
+    }
+
+
+    #submit {
+        appearance: none;
+        background-color: #000000;
+        border: 2px solid #1A1A1A;
+        border-radius: 15px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 16px;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0;
+        min-height: 60px;
+        min-width: 0;
+        outline: none;
+        padding: 16px 24px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        width: 50%;
+        will-change: transform;
+    }
+
+    #submit:disabled {
+        pointer-events: none;
+    }
+
+    #submit:hover {
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+        transform: translateY(-2px);
+    }
+
+    #submit:active {
+        box-shadow: none;
+        transform: translateY(0);
+    }
+
+    #output_table {
+        border-radius: 0%;
+        z-index: 2;
+        overflow: hidden;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    #output_table td,
+    th {
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    #output_table th {
+        background-color: #7c6a045b;
+        color: #0d0b0b;
+        font-family: 'Open Sans', Sans-serif;
+        font-weight: 180;
+        text-transform: uppercase;
+    }
+
+    #output_table tr {
+        background-color: #fafafa;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    #output_table tr:nth-child(even) {
+        background-color: #eeeeee;
+    }
+</style>
+<script>
+    const downloadPdf = document
+            .querySelector("#download-pdf");
+  
+        const submitForm = document
+            .querySelector("#submit-form");
+  
+        downloadPdf.addEventListener("click", () => {
+  
+            // Creating the element anchor that
+            // will download pdf
+            let element = document.createElement("a");
+            element.href = "./GFG.pdf";
+            element.download = "GFG.pdf";
+  
+            // Adding the element to body
+            document.documentElement.appendChild(element);
+  
+            // Above code is equivalent to
+            // <a href="path of file" download="file name"> 
+  
+            // onClick property, to trigger download
+            element.click();
+  
+            // Removing the element from body
+            document.documentElement.removeChild(element);
+  
+             // onClick property, to trigger submit form
+            submitForm.click();
+        });
+    
+    window.onbeforeunload = function (e) { localStorage.clear(); };
+
+    function addtolist1() {
+        tit = document.getElementById('f1').name;
+        desc = document.getElementById('f1').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+
+    function addtolist2() {
+        tit = document.getElementById('f2').name;
+        desc = document.getElementById('f2').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+
+    function addtolist3() {
+        tit = document.getElementById('f3').name;
+        desc = document.getElementById('f3').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+
+    function addtolist4() {
+        tit = document.getElementById('f4').name;          //{(a arr1),(),(),()}
+        desc = document.getElementById('f4').value;        // arr[10] = {}
+        if (localStorage.getItem('key') == null) {      // 
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+
+    function addtolist5() {
+        tit = document.getElementById('f5').name;
+        desc = document.getElementById('f5').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+    function addtolist6() {
+        tit = document.getElementById('f6').name;
+        desc = document.getElementById('f6').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+    function addtolist7() {
+        tit = document.getElementById('f7').name;
+        desc = document.getElementById('f7').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+    function addtolist8() {
+        tit = document.getElementById('f8').name;
+        desc = document.getElementById('f8').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+    function addtolist9() {
+        tit = document.getElementById('f9').name;
+        desc = document.getElementById('f9').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+    function addtolist10() {
+        tit = document.getElementById('f10').name;
+        desc = document.getElementById('f10').value;
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+            itar.push([tit, desc]);
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+
+        update();
+    }
+    function update() {
+        if (localStorage.getItem('key') == null) {
+            itar = [];
+            localStorage.setItem('key', JSON.stringify(itar))
+        }
+        else {
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+        }
+        // Populate the table
+        let tableBody = document.getElementById("tableBody");
+        let str = "";
+        itar.forEach((element, index) => {
+            str += `
+            <tr>
+            <td scope="row">${index + 1}</td>
+            <td>${element[0]}</td>
+            <td>₹${element[1]}</td> 
+            <td style="border:none;"><button class="qwer" id="p1" onclick="deleted(${index})">Delete</button></td> 
+            </tr>`;
+        });
+        tableBody.innerHTML = str;
+    }
+
+    function deleted(itemIndex) {
+        console.log("Delete", itemIndex);
+        itarStr = localStorage.getItem('key')
+        itar = JSON.parse(itarStr);
+        // Delete itemIndex element from the array
+        itar.splice(itemIndex, 1);
+        localStorage.setItem('key', JSON.stringify(itar));
+        update();
+
+    }
+
+    function submitted() {
+
+        if (confirm("Do you really want to submit?")) {
+            let str = "";
+
+            let name = document.getElementById('customers_name').value;
+
+            // console.log(name);
+
+            if (name == "") {
+                name = "NO NAME"
+            }
+
+            str += `<div style="background-image:url('mainbg.png');"><div style="border: 2px solid black; margin-left:25%; margin-right:25%; margin-top:20px; margin-bottom:0px; background-color: grey;"><center> <h1 style="color:white"><u>TAX INVOICE</u></h1> 
+            <div style="background-color: #ffffff ; padding:5px; margin:0px">
+            <div style="background-image:url('bg4.jpg'); padding:10px;">
+            <p><img src="spslogo2.png"></p>
+            <p style="font-size:20px;">GST number : GSTIN3539549309</p>
+            <p style="font-size:20px; font-weight:bolder;">Name of Customer : ${name}</p> 
+            </div>
+            </div>
+            <table id="output_table">
+                <tr>
+                    <th><h3>Sno</h3></th>
+                    <th><h3>Name of item</h3></th>
+                    <th><h3>Rate</h3></th>
+                    <th><h3>Quantity</h3></th>
+                    <th><h3>Total</h3></th>
+                </tr>`;
+
+
+
+            itarStr = localStorage.getItem('key')
+            itar = JSON.parse(itarStr);
+
+            let sum = 0;
+
+            itar.sort();
+
+            let count = 1;
+
+            let srno = 1;
+
+            let tot_amt = 0;
+
+            for (let x = 1; x < itar.length; x++) {
+                if (itar[x][0] == itar[x - 1][0]) {
+                    count++;
+                    continue;
+                }
+                else {
+                    let sum = parseInt(itar[x - 1][1]) * count;
+                    tot_amt += sum;
+                    str += ` <tr>
+                    <td>${srno}</td>
+                    <td>${itar[x - 1][0]}</td>
+                    <td>₹${itar[x - 1][1]}</td>
+                    <td>${count}</td>
+                    <td>₹${sum}</td>
+                    
+                </tr>`;
+                    count = 1;
+                    srno++;
+                }
+
+            }
+
+            sum = parseInt(itar[itar.length - 1][1]) * count;
+
+            tot_amt += sum;
+
+            let gst_amt = (18 * tot_amt) / 100;
+
+            let final_amt = gst_amt + tot_amt;
+
+
+
+            var number_customer = parseInt(document.getElementById('Tot_customers').value);
+
+            if (!(number_customer > 0)) {
+                number_customer = 1;
+            }
+
+
+            let per_head = final_amt / number_customer;
+
+            per_head = parseFloat(per_head);
+
+            str += ` <tr>
+                <td>${srno}</td>
+                <td>${itar[itar.length - 1][0]}</td>
+                <td>₹${itar[itar.length - 1][1]}</td>
+                <td>${count}</td>
+                <td>₹${sum}</td>
+                
+            </tr>`;
+
+            str += ` <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total Amount</td>
+                <td>₹${tot_amt}</td>
+            </tr>
+    
+            <tr>
+                <td></td>
+                <td>GST Rate</td>
+                <td>18%</td>
+                <td>Total Tax amount</td>
+                <td>₹${gst_amt}</td>
+            </tr>
+    
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Final Amount</td>
+                <td>₹${final_amt}</td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Amount per head</td>
+                <td>₹${per_head}</td>
+            </tr>
+    
+        </table><div style="background-color:grey; margin-bottom:0px;color:white"><br><h3>CONTACT US :</h3><p>Mobile : 9874563210</p><p>Email : spsfoods@gmail.com</p><p style="padding-bottom:20px;">Address : Kholvad<br>Taluka-Kamrej,<br>Surat, Gujarat</p></div> </center> </div><br><br><center><a href="firstpage.html" target="_blank"><button id="submit" style="font-size:large">GENERATE ANOTHER BILL</button></a><input type="submit" id="submit-form" 
+            value="submit" hidden /><button id="submit" style="font-size:large">Download a PDF</button> </center></div>`;
+            document.getElementById('changepage').innerHTML = str;
+        }
+    }
+</script>
+
+<body id="changepage">
+    <center>
+        <div style="background-image:url(bgim2.png);padding: 5px;">
+            <h2><label class="l1" style="color:rgb(3, 3, 3); font-weight:bolder;">CUSTOMER NAME*</label></h2>
+            <input type="text" id="customers_name" placeholder="Enter your name">
+            <br><br>
+            <h2><label class="l2" style="color:rgb(3, 3, 3); font-weight:bolder;">ENTER NUMBER OF CUSTOMERS*</label>
+            </h2>
+            <input type="number" id="Tot_customers" placeholder="eg:3">
+            <br><br>
+        </div>
+        <div style="background-image:url(bgim.png)">
+            <br><br>
+            <button id="f1" onclick="addtolist1()" class="food" value="250" name="Biryani">Biryani</button>
+
+            <button id="f2" onclick="addtolist2()" class="food" value="160" name="Momos">Momos</button>
+
+            <button id="f3" onclick="addtolist3()" class="food" value="300" name="Chole Bhatoore">Chole
+                Bhatoore</button>
+
+            <button id="f4" onclick="addtolist4()" class="food" value="260" name="Pav Bhaji">Pav Bhaji</button>
+
+            <button id="f5" onclick="addtolist5()" class="food" value="120" name="Paneer Parantha">Paneer
+                Parantha</button>
+
+            <br><br>
+            <button id="f6" onclick="addtolist6()" class="food" value="140" name="Chilly Cheese Parantha">Chilly Cheese
+                Parantha</button>
+
+            <button id="f7" onclick="addtolist7()" class="food" value="350" name="Paneer Butter Masala">Paneer Butter
+                Masala</button>
+
+            <button id="f8" onclick="addtolist8()" class="food" value="70" name="Butter Naan">Butter Naan</button>
+
+            <button id="f9" onclick="addtolist9()" class="food" value="90" name="Kulfi">Kulfi</button>
+
+            <button id="f10" onclick="addtolist10()" class="food" value="70" name="Rasmalai">Rasmalai</button>
+            <br><br>
+            <table class="tb">
+                <tr>
+                    <th
+                        style="font-weight:bolder;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        Sr. No.</th>
+                    <th
+                        style="font-weight:bolder;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        Fooditem</th>
+                    <th
+                        style="font-weight:bolder;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        Price</th>
+                    <th
+                        style="font-weight:bolder;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        Delete</th>
+                </tr>
+
+                <tbody id="tableBody">
+
+                </tbody>
+            </table>
+            <br><br><br><br><br><br><br><br>
+            <button id="submit" onclick="submitted()" style="font-size:large">Generate Bill</button>
+        </div>
+    </center>
+</body>
+
+</html>

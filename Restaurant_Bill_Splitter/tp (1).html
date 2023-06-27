@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="spslogo.png" type="image/x-icon">
+    <title>SPS</title>
+
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js">
+    </script>
+
+    <style>
+        #tb {
+            border-collapse: separate;
+        }
+
+        #tb th,
+        #tb td {
+            align-content: center;
+            padding: 25px;
+            border: solid 1px #777;
+        }
+
+        #tb td {
+            text-align: center;
+        }
+
+        #tb {
+            z-index: 2;
+            border-collapse: collapse;
+            border-spacing: 0;
+            box-shadow: 0 2px 15px rgba(64, 64, 64, .7);
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+
+        td,
+        th {
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #6b2804;
+            color: #fafafa;
+            font-family: 'Open Sans', Sans-serif;
+            font-weight: 150;
+            text-transform: uppercase;
+        }
+
+        tr {
+            width: 100%;
+            background-color: #fafafa;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        tr:nth-child(even) {
+            background-color: #eeeeee;
+        }
+
+        input[type=text] {
+            width: 30%;
+            border: 2px solid #aaa;
+            border-radius: 4px;
+            margin: 8px 0;
+            outline: none;
+            padding: 8px;
+            box-sizing: border-box;
+            transition: .3s;
+        }
+
+        input[type=text]:focus {
+            border-color: dodgerBlue;
+            box-shadow: 0 0 8px 0 dodgerBlue;
+        }
+
+        input[type=number] {
+            width: 20%;
+            border: 2px solid #aaa;
+            border-radius: 4px;
+            margin: 8px 0;
+            outline: none;
+            padding: 8px;
+            box-sizing: border-box;
+            transition: .3s;
+        }
+
+        input[type=number]:focus {
+            border-color: dodgerBlue;
+            box-shadow: 0 0 8px 0 dodgerBlue;
+        }
+
+        .qwer {
+            align-items: center;
+            background-color: #0A66C2;
+            border: 0;
+            border-radius: 100px;
+            box-sizing: border-box;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 20px;
+            max-width: 480px;
+            min-height: 40px;
+            min-width: 0px;
+            overflow: hidden;
+            padding: 0px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
+            touch-action: manipulation;
+            transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+        }
+
+        .qwer:hover,
+        .qwer:focus {
+            background-color: #c31d11;
+            color: #ffffff;
+        }
+
+        .qwer:active {
+            background: #09e11b;
+            color: rgb(255, 255, 255, .7);
+        }
+
+        #f1,
+        #f2,
+        #f3,
+        #f4,
+        #f5,
+        #f6,
+        #f7,
+        #f8,
+        #f9,
+        #f10 {
+            align-items: center;
+            background-image: linear-gradient(135deg, #f34079 40%, #fc894d);
+            border: 0;
+            border-radius: 10px;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: "Codec cold", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            height: 54px;
+            letter-spacing: .4px;
+            line-height: 1;
+            max-width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 3px;
+            text-decoration: none;
+            text-transform: uppercase;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            margin: 5px;
+            will-change: transform;
+        }
+
+
+        #f1:hover,
+        #f2:hover,
+        #f3:hover,
+        #f4:hover,
+        #f5:hover,
+        #f6:hover,
+        #f7:hover,
+        #f8:hover,
+        #f9:hover,
+        #f10:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(3px);
+        }
+
+        #f1:active,
+        #f2:active,
+        #f3:active,
+        #f4:active,
+        #f5:active,
+        #f6:active,
+        #f7:active,
+        #f8:active,
+        #f9:active,
+        #f10:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        #submit,#enter,#button {
+            appearance: none;
+            background-color: #000000;
+            border: 2px solid #1A1A1A;
+            border-radius: 15px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 16px;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0;
+            min-height: 60px;
+            min-width: 0;
+            outline: none;
+            padding: 16px 24px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: 50%;
+            will-change: transform;
+        }
+
+        #submit:disabled,#enter:disabled,#button:disabled {
+            pointer-events: none;
+        }
+
+        #submit:hover,#enter:hover,#button:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
+        #submit:active,#enter:active,#button:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        .output_table {
+            border-radius: 0%;
+            z-index: 2;
+            overflow: hidden;
+            width: 100%;
+            box-shadow: none;
+        }
+
+        .output_table td,
+        th {
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .output_table th {
+            background-color: #7c6a045b;
+            color: #0d0b0b;
+            font-family: 'Open Sans', Sans-serif;
+            font-weight: 180;
+            text-transform: uppercase;
+        }
+
+        .output_table tr {
+            background-color: #fafafa;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .output_table tr:nth-child(even) {
+            background-color: #eeeeee;
+        }
+    </style>
+    <script>
+        window.onbeforeunload = function (e) { localStorage.clear(); };
+        function addtolistbiryani(classarray) {
+            let cname = classarray.id;
+            let foodname = "Biryani";
+            let paisa = 250;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+
+            update(classarray);
+        }
+        function addtolistmomos(classarray) {
+            let cname = classarray.id;
+            let foodname = "Momos";
+            let paisa = 160;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+
+            update(classarray);
+        }
+        function addtolistcholebhatoore(classarray) {
+            let cname = classarray.id;
+            let foodname = "Chole Bhatoore";
+            let paisa = 300;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+
+            update(classarray);
+        }
+        function addtolistpavbhaji(classarray) {
+            let cname = classarray.id;
+            let foodname = "Pav Bhaji";
+            let paisa = 260;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+
+            update(classarray);
+        }
+        function addtolistpaneerparantha(classarray) {
+            let cname = classarray.id;
+            let foodname = "Paneer Parantha";
+            let paisa = 120;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+            update(classarray);
+        }
+        function addtolistchillycheeseparantha(classarray) {
+            let cname = classarray.id;
+            let foodname = "Chilly Cheese Parantha";
+            let paisa = 140;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+
+            update(classarray);
+        }
+        function addtolistpaneerbuttermasala(classarray) {
+            let cname = classarray.id;
+            let foodname = "Paneer Butter Masala";
+            let paisa = 350;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+            update(classarray);
+        }
+        function addtolistbutternaan(classarray) {
+            let cname = classarray.id;
+            let foodname = "Butter Naan";
+            let paisa = 70;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+
+            update(classarray);
+        }
+        function addtolistkulfi(classarray) {
+            let cname = classarray.id;
+            let foodname = "Kulfi";
+            let paisa = 90;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+
+            update(classarray);
+        }
+        function addtolistrasmalai(classarray) {
+            let cname = classarray.id;
+            let foodname = "Rasmalai";
+            let paisa = 70;
+
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname);
+                itar = JSON.parse(itarStr);
+                itar.push([foodname, paisa]);
+                localStorage.setItem(cname, JSON.stringify(itar));
+            }
+
+            update(classarray);
+        }
+        function update(classarray) {
+
+            let cname = classarray.id;
+            //console.log(cname);
+            console.log(classarray)
+            if (localStorage.getItem(cname) == null) {
+                itar = [];
+                localStorage.setItem(cname, JSON.stringify(itar))
+            }
+            else {
+                itarStr = localStorage.getItem(cname)
+                itar = JSON.parse(itarStr);
+            }
+            // Populate the table
+            let tableBody = document.getElementById(cname);
+            let str = "";
+            itar.forEach((element, index) => {
+                str += `
+                <tr>
+                <td scope="row">${index + 1}</td>
+                <td>${element[0]}</td>
+                <td>₹${element[1]}</td> 
+                <td style="border:none;"><button class="qwer" onclick="deleted(${index},${cname})">Delete</button></td> 
+                </tr>`;
+            });
+            classarray.innerHTML = str;
+        }
+
+        function deleted(itemIndex, cname) {
+            console.log(cname);
+
+            classname = cname.id;
+            itarStr = localStorage.getItem(classname)
+            itar = JSON.parse(itarStr);
+            itar.splice(itemIndex, 1);
+            localStorage.setItem(classname, JSON.stringify(itar));
+            update(cname);
+
+        }
+
+
+        function badafunction() {
+
+            var number_customer = parseInt(document.getElementById('Tot_customers').value);
+            let ClassArray = ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"];
+            console.log(ClassArray[0]);
+            
+
+
+            var str = "";
+            for (let i = 0; i < number_customer; i++) {
+                str += `<center><div style="background-image:url(bgim2.png);padding: 5px;">
+        <h2><label class="l1" style="color:rgb(3, 3, 3); font-weight:bolder;">CUSTOMER ${i + 1}*</label></h2>
+        <input type="text" class=${ClassArray[i]} placeholder="Enter your name"><br><br></div>
+        <div style="background-image:url(bgim.png)">
+        <button class=${ClassArray[i]} id="f1" onclick="addtolistbiryani(${ClassArray[i]})">Biryani</button>
+        <button class=${ClassArray[i]} id="f2" onclick="addtolistmomos(${ClassArray[i]})">Momos</button>
+        <button class=${ClassArray[i]} id="f3" onclick="addtolistcholebhatoore(${ClassArray[i]})">Chole Bhatoore</button>
+        <button class=${ClassArray[i]} id="f4" onclick="addtolistpavbhaji(${ClassArray[i]})">Pav Bhaji</button>
+        <button class=${ClassArray[i]} id="f5" onclick="addtolistpaneerparantha(${ClassArray[i]})">Panner Parantha</button><br><br>
+        <button class=${ClassArray[i]} id="f6" onclick="addtolistchillycheeseparantha(${ClassArray[i]})">Chilly Cheese Parantha</button>
+        <button class=${ClassArray[i]} id="f7" onclick="addtolistpaneerbuttermasala(${ClassArray[i]})">Paneer Butter Masala</button>
+        <button class=${ClassArray[i]} id="f8" onclick="addtolistbutternaan(${ClassArray[i]})">Butter Naan</button>
+        <button class=${ClassArray[i]} id="f9" onclick="addtolistkulfi(${ClassArray[i]})">Kulfi</button>
+        <button class=${ClassArray[i]} id="f10" onclick="addtolistrasmalai(${ClassArray[i]})">Rasmalai</button>
+        <br><br><br>
+        
+        <table class=${ClassArray[i]} id="tb">
+            <tr>
+                <th
+                    style="font-weight:bolder;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    Sr. No.</th>
+                <th
+                    style="font-weight:bolder;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    Fooditem</th>
+                <th
+                    style="font-weight:bolder;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    Price</th>
+                <th
+                    style="font-weight:bolder;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    Delete</th>
+            </tr>
+        
+            <tbody id=${ClassArray[i]}>
+        
+            </tbody>
+        </table><br><br>`
+
+            }
+
+            str += `<br><br><button id="submit" onclick="submitted()">Generate Bill</button></div></center>`
+
+            document.getElementById('changepage2').innerHTML = str;
+
+
+            console.log(document.getElementById(ClassArray[0]));
+            for (let j = 0; j < number_customer; j++) {
+                let temp = document.getElementById(ClassArray[j])
+                console.log(temp);
+                update(temp);
+            }
+        }
+
+
+        function submitted() {
+            if (confirm("Do you really want to submit?")) {
+
+                let ClassArray = ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"];
+
+                let customertotal = parseInt(document.getElementById('Tot_customers').value)
+
+                str = "";
+
+                str += `<div style="background-image:url('mainbg.png');"><div style="border: 2px solid black; margin-left:25%; margin-right:25%; margin-top:20px; margin-bottom:0px; background-color: grey;" id="makepdf"><center><h1 style="color:white"><u>TAX INVOICE</u></h1> 
+                    <div style="background-image:url('bg4.jpg'); padding:10px"><p><img src="spslogo2.png"></p>
+                    <p style="font-size:20px;">GST number : GSTIN3539549309</p><br></div><br>`
+
+
+                for (let i = 0; i < customertotal; i++) {
+
+                    customerkanaam = document.getElementsByClassName(ClassArray[i])[0].value;
+
+                    if (customerkanaam == "") {
+                        customerkanaam = "No Name";
+                    }
+
+                    //console.log(customerkanaam);
+
+                    str += ` <p style="font-size:20px; font-weight:bolder;">Name Of Customer : ${customerkanaam} </p><br>`;
+
+
+
+                    str += `
+        
+                    <table class="output_table">
+                        <tr>
+                            <th><h3>Sno</h3></th>
+                            <th><h3>Name of item</h3></th>
+                            <th><h3>Rate</h3></th>
+                            <th><h3>Quantity</h3></th>
+                            <th><h3>Total</h3></th>
+                        </tr>`;
+
+
+
+                    itarStr = localStorage.getItem(ClassArray[i]);
+                    itar = JSON.parse(itarStr);
+
+                    let sum = 0;
+
+                    itar.sort();
+
+                    let count = 1;
+
+                    let srno = 1;
+
+                    let tot_amt = 0;
+
+                    for (let x = 1; x < itar.length; x++) {
+                        if (itar[x][0] == itar[x - 1][0]) {
+                            count++;
+                            continue;
+                        }
+                        else {
+                            let sum = parseInt(itar[x - 1][1]) * count;
+                            tot_amt += sum;
+                            str += ` <tr>
+                            <td>${srno}</td>
+                            <td>${itar[x - 1][0]}</td>
+                            <td>₹${itar[x - 1][1]}</td>
+                            <td>${count}</td>
+                            <td>₹${sum}</td>
+                            
+                        </tr>`;
+                            count = 1;
+                            srno++;
+                        }
+
+                    }
+
+                    sum = parseInt(itar[itar.length - 1][1]) * count;
+
+                    tot_amt += sum;
+
+                    let gst_amt = (18 * tot_amt) / 100;
+
+                    let final_amt = gst_amt + tot_amt;
+
+
+
+
+                    str += ` <tr>
+                        <td>${srno}</td>
+                        <td>${itar[itar.length - 1][0]}</td>
+                        <td>₹${itar[itar.length - 1][1]}</td>
+                        <td>${count}</td>
+                        <td>₹${sum}</td>
+                        
+                    </tr>`;
+
+                    str += ` <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total Amount</td>
+                        <td>₹${tot_amt}</td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td>GST Rate</td>
+                        <td>18%</td>
+                        <td>Total Tax amount</td>
+                        <td>₹${gst_amt}</td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Final Amount</td>
+                        <td>₹${final_amt}</td>
+                    </tr>
+                    
+                </table><br>
+                    `
+
+
+                }
+                    
+            
+               str += `<div style="color:#ffffff";><h3>CONTACT US :</h3><p>Mobile : 9874563210</p><p>Email : spsfoods@gmail.com</p><p style="padding-bottom:20px;">Address : Kholvad<br>Taluka-Kamrej,<br>Surat, Gujarat</p></div> </center></div><br><br><center><button id="button" style="font-size:large; margin:20px" onclick="generatepdf()">Create Pdf</button><a href="firstpage.html" target="_blank"><button id="submit" style="font-size:large; margin:20px ">GENERATE ANOTHER BILL</button></a></center></div>`;
+                    document.getElementById('changepage').innerHTML = str;}
+                
+            }
+
+            function generatepdf()
+            {
+            var makepdf = document.getElementById("makepdf");
+            var mywindow = window.open("", "PRINT", "height=400,width=600");
+
+            mywindow.document.write(makepdf.innerHTML);
+
+            mywindow.document.close();
+            mywindow.focus();
+
+            mywindow.print();
+            // mywindow.close();
+
+        return true;
+    }
+            
+        
+    </script>
+
+</head>
+
+<body id="changepage">
+    <center>
+        <div style="background-image:url(bgim2.png);padding: 5px;">
+            <h2><label class="l2" style="color:rgb(3, 3, 3); font-weight:bolder;">ENTER NUMBER OF CUSTOMERS*</label>
+            </h2>
+            <input type="number" id="Tot_customers" placeholder="eg:3">
+            <button onclick="badafunction()" id="enter" style="font-size:large;width: 8%;padding: 0px;">ENTER</button>
+        </div>
+    </center>
+    <div id="changepage2"></div>
+
+
+</body>
+
+</html>
