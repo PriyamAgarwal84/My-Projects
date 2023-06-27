@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .quiz-container{
+            justify-content: center;
+        }
+        .heading-text{
+            font-family: 'Baloo Da 2', cursive;
+            font-weight: 400;
+            font-size: 4.5rem;
+            color: white;
+            top: -1vh;
+        }
+        #score{
+            font-size: 4rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <p class="heading-text glow">Your Score</p>
+        <h1 id="score"></h1>
+        <script>
+            let score = localStorage.getItem("score");
+            document.getElementById("score").innerHTML=score;
+        </script>
+    </div>
+</body>
+</html>
